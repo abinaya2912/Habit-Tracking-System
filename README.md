@@ -75,3 +75,4 @@ The project is built using the following technologies:
 - Integration with fitness and productivity apps.
 
 ---
+
