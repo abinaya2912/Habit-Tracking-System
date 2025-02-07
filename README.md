@@ -1,9 +1,4 @@
-Here’s a clean and structured **README.md** file including the sections you requested:  
 
----
-
-### **README.md**
-```markdown
 # 🚀 Habit Tracking System
 
 ## 📌 Overview
@@ -75,3 +70,5 @@ The Habit Tracking System is built using the following technologies:
 - **Chart.js / D3.js** for data visualization 📊
 - **Push Notification Service** for habit reminders 🔔
 
+![ACTIVITY TRACKING](./images/ACTIVITY.png)
+![HABITS](./images/ANALYSIS.png)
