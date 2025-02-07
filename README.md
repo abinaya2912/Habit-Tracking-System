@@ -70,3 +70,5 @@ The Habit Tracking System is built using the following technologies:
 - **Chart.js / D3.js** for data visualization 📊
 - **Push Notification Service** for habit reminders 🔔
 
+![ACTIVITY TRACKING](./images/ACTIVITY.png)
+![HABITS](./images/ANALYSIS.png)
