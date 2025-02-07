@@ -71,4 +71,4 @@ The Habit Tracking System is built using the following technologies:
 - **Push Notification Service** for habit reminders 🔔
 
 ![ACTIVITY TRACKING](./images/ACTIVITY.png)
-![HABITS](./images/ANALYSIS.png)
+![ANALYSIS](./images/ANALYSIS.png)
