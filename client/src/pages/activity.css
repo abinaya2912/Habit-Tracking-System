@@ -1,0 +1,183 @@
+/* General Styles */
+.habit-tracker-page {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #53d5ef;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Habit Tracker Container */
+.habit-tracker {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background: #f4f4f4;
+  width: 80%;
+  max-width: 700px;
+  min-height: 60vh;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Introduction Box */
+.intro-container {
+  background: linear-gradient(to right, #bae4ef, #4a84e7);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Buttons */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.add-habit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-habit-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Habit Form */
+.habit-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.habit-form label {
+  display: block;
+  margin: 10px 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+.habit-form input,
+.habit-form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.cancel-btn:hover,
+.save-btn:hover {
+  opacity: 0.8;
+}
+
+/* Habit List */
+.habit-list {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.habit-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.habit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+}
+
+/* Habit Actions */
+.habit-actions button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .habit-tracker {
+    width: 95%;
+    min-height: auto;
+  }
+  .habit-form {
+    width: 90%;
+  }
+  .habit-list {
+    width: 90%;
+  }
+}
