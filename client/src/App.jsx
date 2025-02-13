@@ -9,6 +9,7 @@ import Analysis from "./pages/Analysis";
 import Login from "./pages/Login";
 import "./App.css";
 import Signup from "./pages/Signup";
+import Addhabit from "./pages/Addhabit";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/analysis" element={<Analysis />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/addhabits" element={<Addhabit />} />
       </Routes>
     </Router>
   );

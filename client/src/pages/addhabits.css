@@ -1,0 +1,87 @@
+/* General container styling */
+.habit-form-container {
+    width: 300px; /* Reduced width */
+    margin: 30xp auto;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Form title */
+.habit-form-container h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 18px; /* Reduced font size */
+}
+
+/* Labels and Inputs */
+.habit-form-container label {
+    display: block;
+    font-weight: bold;
+    color: #444;
+    margin: 8px 0 3px;
+    text-align: left;
+    font-size: 14px; /* Reduced font size */
+}
+
+.habit-form-container input,
+.habit-form-container select {
+    width: 100%;
+    padding: 6px; /* Reduced padding */
+    margin-bottom: 10px; /* Reduced spacing */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.cancel-btn,
+.save-btn {
+    width: 48%;
+    padding: 8px;
+    font-size: 14px; /* Reduced font size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.cancel-btn {
+    background: #ccc;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background: #bbb;
+}
+
+.save-btn {
+    background: #28a745;
+    color: white;
+}
+
+.save-btn:hover {
+    background: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .habit-form-container {
+        width: 85%;
+        padding: 12px;
+    }
+
+    .cancel-btn, .save-btn {
+        width: 48%;
+        font-size: 12px; /* Further reduced size */
+    }
+}
