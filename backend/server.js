@@ -77,14 +77,24 @@ app.get("/habits", async (req, res) => {
   }
 });
 
-/* ✅ Delete Habit */
-app.delete("/habit/:id", async (req, res) => {
+/* ✅ Move Habit to Completed or Pending and Delete */
+app.post("/habit/status/:id", async (req, res) => {
   try {
+    const { status } = req.body;
+    const habit = await Habit.findById(req.params.id);
+    if (!habit) return res.status(404).json({ message: "Habit not found" });
+
+    if (status === "completed") {
+      await Habit.findByIdAndUpdate(req.params.id, { status: "completed" });
+    } else {
+      await Habit.findByIdAndUpdate(req.params.id, { status: "pending" });
+    }
+
     await Habit.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Habit deleted successfully" });
+    res.status(200).json({ message: `Habit marked as ${status} and removed from tracking.` });
   } catch (error) {
-    console.error("❌ Error deleting habit:", error);
-    res.status(500).json({ message: "Error deleting habit" });
+    console.error("❌ Error updating habit status:", error);
+    res.status(500).json({ message: "Error updating habit status" });
   }
 });
 

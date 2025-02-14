@@ -23,15 +23,15 @@ const Tracking = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/habit/${id}`);
-      setHabits(prevHabits => prevHabits.filter(habit => habit._id !== id));
+      await axios.delete(`http://localhost:5000/habit/${id}`); // Corrected syntax
+      setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== id));
     } catch (error) {
       console.error("Error deleting habit:", error);
     }
   };
 
   return (
-    <div className="habit-tracker-wrapper">
+    <div>
       <Navbar1 />
       <div className="habit-tracker-page">
         <div className="intro-container">
@@ -40,15 +40,19 @@ const Tracking = () => {
         </div>
 
         <div className="buttons-container">
-          <button className="add-habit-btn" onClick={() => navigate('/addhabits')}>+ Add Habit</button>
+          <button className="add-habit-btn" onClick={() => navigate('/addhabits')}>
+            + Add Habit
+          </button>
         </div>
 
         <div className="habit-list">
           <h3>View Habits</h3>
-          {habits.length === 0 ? <p>No habits added.</p> : (
+          {habits.length === 0 ? (
+            <p>No habits added.</p>
+          ) : (
             <ul>
-              {habits.map(habit => (
-                <li key={habit._id} className="habit-item">
+              {habits.map((habit, index) => (
+                <li key={habit._id || index} className="habit-item">
                   <span>{habit.name} - {habit.frequency} ({habit.timeOfDay})</span>
                   <div className="habit-actions">
                     <button className="delete-btn" onClick={() => handleDelete(habit._id)}>Delete</button>

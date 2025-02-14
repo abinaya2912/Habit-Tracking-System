@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './addhabits.css';
@@ -19,11 +19,10 @@ const AddHabit = () => {
   };
 
   const handleSave = async () => {
-    if (habit.name.trim() === '') return;
+    if (!habit.name.trim()) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/add-habit", habit);
-      console.log("Habit saved:", response.data);
+      await axios.post("http://localhost:5000/add-habit", habit);
       navigate('/tracking');
     } catch (error) {
       console.error("Error saving habit:", error);
