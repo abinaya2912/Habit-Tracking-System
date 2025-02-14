@@ -1,0 +1,111 @@
+/* General Styles */
+.dashboard-container {
+    font-family: "Arial", sans-serif;
+    padding: 20px;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  /* Dark Mode */
+  .dark-mode {
+    background: #121212;
+    color: white;
+  }
+  .dark-mode .profile-card {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .dark-mode .habit-card {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Profile Card */
+  .profile-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  .quote {
+    font-style: italic;
+    color: #666;
+  }
+  .dark-mode-toggle {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .dark-mode-toggle:hover {
+    background: #222;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 400px;
+  }
+  .search-bar input {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  /* Habit Sections */
+  .habits-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .habits-container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Habit Cards */
+  .habit-card {
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    font-weight: bold;
+    transition: transform 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+  }
+  .habit-card.completed {
+    background: #8bc34a;
+    color: white;
+  }
+  .habit-card.pending {
+    background: #ff9800;
+    color: white;
+  }
+  .habit-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .habits-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

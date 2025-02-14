@@ -21,9 +21,27 @@ const Tracking = () => {
     fetchHabits();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, habit) => {
+    const userChoice = window.confirm("Is this habit completed?");
+    
+    if (userChoice) {
+      try {
+        await axios.post(`http://localhost:5000/habit/completed`, habit);
+        alert("Habit moved to Completed Tasks!");
+      } catch (error) {
+        console.error("Error marking habit as completed:", error);
+      }
+    } else {
+      try {
+        await axios.post(`http://localhost:5000/habit/pending`, habit);
+        alert("Habit moved to Pending Tasks!");
+      } catch (error) {
+        console.error("Error marking habit as pending:", error);
+      }
+    }
+
     try {
-      await axios.delete(`http://localhost:5000/habit/${id}`); // Corrected syntax
+      await axios.delete(`http://localhost:5000/habit/${id}`);
       setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== id));
     } catch (error) {
       console.error("Error deleting habit:", error);
@@ -55,7 +73,7 @@ const Tracking = () => {
                 <li key={habit._id || index} className="habit-item">
                   <span>{habit.name} - {habit.frequency} ({habit.timeOfDay})</span>
                   <div className="habit-actions">
-                    <button className="delete-btn" onClick={() => handleDelete(habit._id)}>Delete</button>
+                    <button className="delete-btn" onClick={() => handleDelete(habit._id, habit)}>Delete</button>
                   </div>
                 </li>
               ))}
