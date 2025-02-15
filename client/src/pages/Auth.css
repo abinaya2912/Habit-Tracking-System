@@ -6,8 +6,10 @@
     justify-content: center;
     min-height: 100vh;
     background-color: #f3f4f6;
+    padding: 20px; /* Added padding for better spacing */
 }
 
+/* Authentication Box */
 .auth-box {
     background-color: white;
     padding: 2rem;
@@ -17,6 +19,7 @@
     text-align: center;
 }
 
+/* Title */
 .auth-box h2 {
     font-size: 24px;
     font-weight: bold;
@@ -24,6 +27,7 @@
     color: #333;
 }
 
+/* Input Fields */
 .auth-box input {
     width: 100%;
     padding: 10px;
@@ -33,6 +37,7 @@
     font-size: 16px;
 }
 
+/* Button */
 .auth-box button {
     width: 100%;
     padding: 10px;
@@ -49,8 +54,31 @@
     background-color: #0056b3;
 }
 
+/* Error Message */
 .auth-message {
     color: red;
     margin-top: 10px;
     font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .auth-box {
+        width: 90%; /* Adjust width for smaller screens */
+        padding: 1.5rem;
+    }
+
+    .auth-box h2 {
+        font-size: 20px; /* Reduce heading size */
+    }
+
+    .auth-box input {
+        font-size: 14px; /* Reduce input font size */
+        padding: 8px;
+    }
+
+    .auth-box button {
+        font-size: 16px; /* Reduce button font size */
+        padding: 8px;
+    }
 }

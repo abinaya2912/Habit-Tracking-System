@@ -15,7 +15,7 @@ const Signup = () => {
     try {
       const response = await axios.post("http://localhost:5000/signup", { username, email, password });
       toast.success(response.data.message);
-      navigate("/home");
+      navigate("/login");
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");
     }

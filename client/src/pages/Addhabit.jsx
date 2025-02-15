@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// addhabits.jsx
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './addhabits.css';
@@ -19,11 +20,14 @@ const AddHabit = () => {
   };
 
   const handleSave = async () => {
-    if (habit.name.trim() === '') return;
+    if (!habit.name.trim()) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/add-habit", habit);
-      console.log("Habit saved:", response.data);
+      // Get the logged-in user's data and add the userId to the habit object.
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const habitWithUser = { ...habit, userId: userData.id };
+
+      await axios.post("http://localhost:5000/add-habit", habitWithUser);
       navigate('/tracking');
     } catch (error) {
       console.error("Error saving habit:", error);

@@ -1,8 +1,9 @@
 /* General container styling */
 .habit-form-container {
-    width: 300px; /* Reduced width */
-    margin: 30xp auto;
-    padding: 40px;
+    width: 90%; /* Adjusted width for better responsiveness */
+    max-width: 300px;
+    margin: 30px auto; /* Corrected typo */
+    padding: 20px; /* Adjusted padding */
     background: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
@@ -13,7 +14,7 @@
 .habit-form-container h2 {
     color: #333;
     margin-bottom: 10px;
-    font-size: 18px; /* Reduced font size */
+    font-size: 18px;
 }
 
 /* Labels and Inputs */
@@ -23,31 +24,32 @@
     color: #444;
     margin: 8px 0 3px;
     text-align: left;
-    font-size: 14px; /* Reduced font size */
+    font-size: 14px;
 }
 
 .habit-form-container input,
 .habit-form-container select {
     width: 100%;
-    padding: 6px; /* Reduced padding */
-    margin-bottom: 10px; /* Reduced spacing */
+    padding: 8px; /* Adjusted padding */
+    margin-bottom: 8px; /* Adjusted spacing */
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* Buttons */
 .form-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 12px;
+    gap: 5px; /* Added gap for better spacing */
 }
 
 .cancel-btn,
 .save-btn {
-    width: 48%;
-    padding: 8px;
-    font-size: 14px; /* Reduced font size */
+    flex: 1; /* Ensures equal button sizing */
+    padding: 10px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -76,12 +78,17 @@
 /* Responsive Design */
 @media (max-width: 480px) {
     .habit-form-container {
-        width: 85%;
-        padding: 12px;
+        width: 90%; /* Allows full width usage */
+        padding: 15px;
     }
 
     .cancel-btn, .save-btn {
-        width: 48%;
-        font-size: 12px; /* Further reduced size */
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .form-actions {
+        flex-direction: column; /* Stacks buttons on smaller screens */
+        gap: 10px; /* Ensures spacing */
     }
 }

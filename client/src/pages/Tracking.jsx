@@ -1,3 +1,4 @@
+// tracking.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +12,9 @@ const Tracking = () => {
   useEffect(() => {
     const fetchHabits = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/habits");
+        // Get user id from localStorage
+        const userData = JSON.parse(localStorage.getItem("user"));
+        const response = await axios.get(`http://localhost:5000/habits?userId=${userData.id}`);
         setHabits(response.data);
       } catch (error) {
         console.error("Error fetching habits:", error);
@@ -21,17 +24,35 @@ const Tracking = () => {
     fetchHabits();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, habit) => {
+    const userChoice = window.confirm("Is this habit completed?");
+    
+    if (userChoice) {
+      try {
+        await axios.post(`http://localhost:5000/habit/completed`, habit);
+        alert("Habit moved to Completed Tasks!");
+      } catch (error) {
+        console.error("Error marking habit as completed:", error);
+      }
+    } else {
+      try {
+        await axios.post(`http://localhost:5000/habit/pending`, habit);
+        alert("Habit moved to Pending Tasks!");
+      } catch (error) {
+        console.error("Error marking habit as pending:", error);
+      }
+    }
+
     try {
       await axios.delete(`http://localhost:5000/habit/${id}`);
-      setHabits(prevHabits => prevHabits.filter(habit => habit._id !== id));
+      setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== id));
     } catch (error) {
       console.error("Error deleting habit:", error);
     }
   };
 
   return (
-    <div className="habit-tracker-wrapper">
+    <div>
       <Navbar1 />
       <div className="habit-tracker-page">
         <div className="intro-container">
@@ -40,18 +61,22 @@ const Tracking = () => {
         </div>
 
         <div className="buttons-container">
-          <button className="add-habit-btn" onClick={() => navigate('/addhabits')}>+ Add Habit</button>
+          <button className="add-habit-btn" onClick={() => navigate('/addhabits')}>
+            + Add Habit
+          </button>
         </div>
 
         <div className="habit-list">
           <h3>View Habits</h3>
-          {habits.length === 0 ? <p>No habits added.</p> : (
+          {habits.length === 0 ? (
+            <p>No habits added.</p>
+          ) : (
             <ul>
-              {habits.map(habit => (
-                <li key={habit._id} className="habit-item">
+              {habits.map((habit, index) => (
+                <li key={habit._id || index} className="habit-item">
                   <span>{habit.name} - {habit.frequency} ({habit.timeOfDay})</span>
                   <div className="habit-actions">
-                    <button className="delete-btn" onClick={() => handleDelete(habit._id)}>Delete</button>
+                    <button className="delete-btn" onClick={() => handleDelete(habit._id, habit)}>Delete</button>
                   </div>
                 </li>
               ))}
