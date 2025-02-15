@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import axios from "axios";
 import Navbar1 from "../components/Navbar1";
-import "./Analysis.css";
+import "./analysis.css";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
