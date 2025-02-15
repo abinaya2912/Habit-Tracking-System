@@ -22,8 +22,8 @@ const Dashboard = () => {
       const fetchHabits = async () => {
         try {
           const [completedRes, pendingRes] = await Promise.all([
-            axios.get(`https://habit-tracking-system-backend.onrender.com/habits/completed?userId=${userData.id}`),
-            axios.get(`https://habit-tracking-system-backend.onrender.com/habits/pending?userId=${userData.id}`),
+            axios.get(`http://localhost:5000/habits/completed?userId=${userData.id}`),
+            axios.get(`http://localhost:5000/habits/pending?userId=${userData.id}`),
           ]);
           setCompletedHabits(completedRes.data);
           setPendingHabits(pendingRes.data);
@@ -42,7 +42,7 @@ const Dashboard = () => {
   const handleCompleteHabit = async (habit) => {
     try {
       // Mark the habit as completed by sending it to the /habit/completed endpoint.
-      await axios.post("https://habit-tracking-system-backend.onrender.com/habit/completed", habit);
+      await axios.post("http://localhost:5000/habit/completed", habit);
       
       // Update the UI by moving the habit from pending to completed.
       setCompletedHabits([...completedHabits, habit]);

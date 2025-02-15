@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import axios from "axios";
 import Navbar1 from "../components/Navbar1";
-import "./analysis.css";
+import "./Analysis.css";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
@@ -20,10 +20,10 @@ const Analysis = () => {
 
         // Fetch completed and pending habits for the specific user
         const completedRes = await axios.get(
-          `https://habit-tracking-system-backend.onrender.com/habits/completed?userId=${userId}`
+          `http://localhost:5000/habits/completed?userId=${userId}`
         );
         const pendingRes = await axios.get(
-          `https://habit-tracking-system-backend.onrender.com/habits/pending?userId=${userId}`
+          `http://localhost:5000/habits/pending?userId=${userId}`
         );
 
         // Calculate the distribution for each status

@@ -13,7 +13,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://habit-tracking-system-backend.onrender.com/login", { email, password });
+      const response = await axios.post("http://localhost:5000/login", { email, password });
       if (response.data.success) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         toast.success("Login successful");
