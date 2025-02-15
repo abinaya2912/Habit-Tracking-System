@@ -1,18 +1,18 @@
-// tracking.jsx
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Navbar1 from "../components/Navbar1";
-import './activity.css';
+import "./activity.css";
 
 const Tracking = () => {
   const [habits, setHabits] = useState([]);
+  const [selectedHabit, setSelectedHabit] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHabits = async () => {
       try {
-        // Get user id from localStorage
         const userData = JSON.parse(localStorage.getItem("user"));
         const response = await axios.get(`http://localhost:5000/habits?userId=${userData.id}`);
         setHabits(response.data);
@@ -24,31 +24,31 @@ const Tracking = () => {
     fetchHabits();
   }, []);
 
-  const handleDelete = async (id, habit) => {
-    const userChoice = window.confirm("Is this habit completed?");
-    
-    if (userChoice) {
-      try {
-        await axios.post(`http://localhost:5000/habit/completed`, habit);
-        alert("Habit moved to Completed Tasks!");
-      } catch (error) {
-        console.error("Error marking habit as completed:", error);
-      }
-    } else {
-      try {
-        await axios.post(`http://localhost:5000/habit/pending`, habit);
-        alert("Habit moved to Pending Tasks!");
-      } catch (error) {
-        console.error("Error marking habit as pending:", error);
-      }
-    }
+  const handleDeleteClick = (habit) => {
+    setSelectedHabit(habit);
+    setShowModal(true);
+  };
+
+  const handleDeleteConfirm = async (isCompleted) => {
+    if (!selectedHabit) return;
 
     try {
-      await axios.delete(`http://localhost:5000/habit/${id}`);
-      setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== id));
+      if (isCompleted) {
+        await axios.post(`http://localhost:5000/habit/completed`, selectedHabit);
+        alert("Habit marked as Completed!");
+      } else {
+        await axios.post(`http://localhost:5000/habit/pending`, selectedHabit);
+        alert("Habit marked as Not Completed!");
+      }
+
+      await axios.delete(`http://localhost:5000/habit/${selectedHabit._id}`);
+      setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== selectedHabit._id));
     } catch (error) {
-      console.error("Error deleting habit:", error);
+      console.error("Error handling habit:", error);
     }
+
+    setShowModal(false);
+    setSelectedHabit(null);
   };
 
   return (
@@ -61,7 +61,7 @@ const Tracking = () => {
         </div>
 
         <div className="buttons-container">
-          <button className="add-habit-btn" onClick={() => navigate('/addhabits')}>
+          <button className="add-habit-btn" onClick={() => navigate("/addhabits")}>
             + Add Habit
           </button>
         </div>
@@ -74,15 +74,33 @@ const Tracking = () => {
             <ul>
               {habits.map((habit, index) => (
                 <li key={habit._id || index} className="habit-item">
-                  <span>{habit.name} - {habit.frequency} ({habit.timeOfDay})</span>
+                  <span>
+                    {habit.name} - {habit.frequency} ({habit.timeOfDay})
+                  </span>
                   <div className="habit-actions">
-                    <button className="delete-btn" onClick={() => handleDelete(habit._id, habit)}>Delete</button>
+                    <button className="delete-btn" onClick={() => handleDeleteClick(habit)}>
+                      Delete
+                    </button>
                   </div>
                 </li>
               ))}
             </ul>
           )}
         </div>
+
+        {/* Confirmation Modal */}
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h3>Is this habit completed?</h3>
+              <div className="modal-buttons">
+                <button className="yes-btn" onClick={() => handleDeleteConfirm(true)}>Yes</button>
+                <button className="no-btn" onClick={() => handleDeleteConfirm(false)}>No</button>
+        
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -100,12 +100,35 @@
   .habit-card:hover {
     transform: scale(1.05);
   }
-  
   /* Responsive Design */
-  @media (max-width: 768px) {
-    .habits-wrapper {
+@media (max-width: 768px) {
+  .habits-wrapper {
       flex-direction: column;
       align-items: center;
-    }
   }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+      padding: 15px;
+  }
+  .profile-card {
+      width: 95%;
+      padding: 15px;
+  }
+  .search-bar {
+      width: 95%;
+  }
+  .habits-container {
+      width: 95%;
+  }
+  .habit-card {
+      font-size: 14px;
+      padding: 8px;
+  }
+  .dark-mode-toggle {
+      font-size: 14px;
+      padding: 6px 10px;
+  }
+}
   
