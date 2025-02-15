@@ -9,12 +9,13 @@
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
 /* Navigation Bar */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Keeps logo on left and nav-links on right */
+  justify-content: space-between;
   align-items: center;
   background: #007bff;
   padding: 10px 20px;
@@ -26,9 +27,8 @@
   list-style: none;
   display: flex;
   gap: 10px;
-  margin: 0;
+  margin: 50px;
   padding: 0;
-  margin-right: 70px; /* Adjust this value to move the nav topics left */
 }
 
 .nav-links li {
@@ -40,7 +40,7 @@
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 8px 12px;
   transition: 0.3s;
 }
 
@@ -50,18 +50,16 @@
   border-radius: 5px;
 }
 
-
 /* Introduction Box */
 .intro-container {
   background: linear-gradient(to right, #7282fe, #77a8fd);
   color: white;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 100%;
+  width: 90%;
   max-width: 600px;
-  margin-top: 100px;
- 
+  margin-top: 50px;
 }
 
 /* Habit Tracker Container */
@@ -70,7 +68,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
+  width: 90%;
   max-width: 700px;
   min-height: 60vh;
   margin-top: 30px;
@@ -80,6 +78,8 @@
 .buttons-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 20px 0;
 }
 
@@ -105,7 +105,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 90%;
   max-width: 500px;
   margin: 20px auto;
 }
@@ -120,7 +120,7 @@
 .habit-form input,
 .habit-form select {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -131,6 +131,7 @@
 .form-actions {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-top: 15px;
 }
 
@@ -163,7 +164,7 @@
   padding: 15px;
   border-radius: 10px;
   max-width: 600px;
-  width: 100%;
+  width: 90%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
@@ -182,11 +183,17 @@
   border-radius: 5px;
   margin: 5px 0;
   border: 1px solid #ddd;
+  flex-wrap: wrap;
 }
 
 /* Habit Actions */
+.habit-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .habit-actions button {
-  margin-left: 8px;
   padding: 8px 12px;
   border: none;
   cursor: pointer;
@@ -209,7 +216,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .habit-tracker {
     width: 95%;
     min-height: auto;
@@ -219,9 +226,7 @@
   .habit-list {
     width: 90%;
   }
-}
 
-@media (max-width: 600px) {
   .habit-item {
     flex-direction: column;
     align-items: flex-start;
@@ -232,5 +237,72 @@
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+  }
+
+  .intro-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .habit-tracker {
+    width: 100%;
+  }
+
+  .habit-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .habit-actions {
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .habit-tracker {
+    padding: 15px;
+  }
+
+  .habit-form {
+    width: 95%;
+  }
+
+  .habit-list {
+    width: 95%;
+  }
+
+  .habit-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+  }
+
+  .habit-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
   }
 }
