@@ -62,23 +62,91 @@
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+
+/* Tablets & small laptops */
+@media (max-width: 768px) {
     .auth-box {
-        width: 90%; /* Adjust width for smaller screens */
+        width: 80%;
+        padding: 1.8rem;
+    }
+
+    .auth-box h2 {
+        font-size: 22px;
+    }
+
+    .auth-box input {
+        font-size: 15px;
+        padding: 9px;
+    }
+
+    .auth-box button {
+        font-size: 17px;
+        padding: 9px;
+    }
+}
+
+/* Phones (large screens) */
+@media (max-width: 600px) {
+    .auth-box {
+        width: 85%;
         padding: 1.5rem;
     }
 
     .auth-box h2 {
-        font-size: 20px; /* Reduce heading size */
+        font-size: 20px;
     }
 
     .auth-box input {
-        font-size: 14px; /* Reduce input font size */
+        font-size: 14px;
         padding: 8px;
     }
 
     .auth-box button {
-        font-size: 16px; /* Reduce button font size */
+        font-size: 16px;
         padding: 8px;
+    }
+}
+
+/* Small phones (iPhone SE, old Androids) */
+@media (max-width: 480px) {
+    .auth-box {
+        width: 90%;
+        padding: 1.3rem;
+    }
+
+    .auth-box h2 {
+        font-size: 18px;
+    }
+
+    .auth-box input {
+        font-size: 13px;
+        padding: 7px;
+    }
+
+    .auth-box button {
+        font-size: 15px;
+        padding: 7px;
+    }
+}
+
+/* Extra small phones (below 360px width) */
+@media (max-width: 360px) {
+    .auth-box {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .auth-box h2 {
+        font-size: 16px;
+    }
+
+    .auth-box input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .auth-box button {
+        font-size: 14px;
+        padding: 6px;
     }
 }

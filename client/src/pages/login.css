@@ -74,28 +74,54 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .auth-container {
-      width: 90%;
-      padding: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .auth-container {
-      width: 95%;
-      padding: 30px;
+    width: 90%;
+    padding: 40px;
   }
 
   .auth-container h2 {
-      font-size: 20px;
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-container {
+    width: 95%;
+    padding: 30px;
+  }
+
+  .auth-container h2 {
+    font-size: 1.4em;
   }
 
   .auth-container input {
-      font-size: 14px;
-      padding: 10px;
+    font-size: 14px;
+    padding: 10px;
   }
 
   .auth-container button {
-      font-size: 14px;
-      padding: 10px;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .auth-container {
+    width: 100%;
+    padding: 20px;
+    margin: 30px auto;
+  }
+
+  .auth-container h2 {
+    font-size: 1.2em;
+  }
+
+  .auth-container input {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .auth-container button {
+    font-size: 13px;
+    padding: 8px;
   }
 }

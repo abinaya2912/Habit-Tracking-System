@@ -1,9 +1,8 @@
 /* General container styling */
 .habit-form-container {
-    width: 90%; /* Adjusted width for better responsiveness */
-    max-width: 300px;
-    margin: 30px auto; /* Corrected typo */
-    padding: 20px; /* Adjusted padding */
+    width: 300px; /* Reduced width */
+    margin: 30xp auto;
+    padding: 40px;
     background: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
@@ -14,7 +13,7 @@
 .habit-form-container h2 {
     color: #333;
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 18px; /* Reduced font size */
 }
 
 /* Labels and Inputs */
@@ -24,32 +23,31 @@
     color: #444;
     margin: 8px 0 3px;
     text-align: left;
-    font-size: 14px;
+    font-size: 14px; /* Reduced font size */
 }
 
 .habit-form-container input,
 .habit-form-container select {
     width: 100%;
-    padding: 8px; /* Adjusted padding */
-    margin-bottom: 8px; /* Adjusted spacing */
+    padding: 6px; /* Reduced padding */
+    margin-bottom: 10px; /* Reduced spacing */
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 /* Buttons */
 .form-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 12px;
-    gap: 5px; /* Added gap for better spacing */
+    margin-top: 10px;
 }
 
 .cancel-btn,
 .save-btn {
-    flex: 1; /* Ensures equal button sizing */
-    padding: 10px;
-    font-size: 14px;
+    width: 48%;
+    padding: 8px;
+    font-size: 14px; /* Reduced font size */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -76,19 +74,40 @@
 }
 
 /* Responsive Design */
+/* Responsive Design */
 @media (max-width: 480px) {
     .habit-form-container {
-        width: 90%; /* Allows full width usage */
+        width: 90%; /* Uses more screen space */
         padding: 15px;
     }
 
     .cancel-btn, .save-btn {
+        width: 100%; /* Stacks buttons for smaller screens */
         font-size: 12px;
-        padding: 8px;
+        padding: 10px;
     }
 
     .form-actions {
-        flex-direction: column; /* Stacks buttons on smaller screens */
-        gap: 10px; /* Ensures spacing */
+        flex-direction: column;
+        gap: 8px;
     }
 }
+
+/* Extra Small Screens (iPhone SE, older Androids) */
+@media (max-width: 375px) {
+    .habit-form-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .habit-form-container h2 {
+        font-size: 16px;
+    }
+
+    .habit-form-container input,
+    .habit-form-container select {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+

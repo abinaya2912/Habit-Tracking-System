@@ -18,33 +18,58 @@
 
 /* Chart container */
 .chart-container {
-  margin: 10px; /* Adjusted margin */
+  margin: 10px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 15px; /* Adjusted padding */
+  padding: 15px;
   border-radius: 8px;
   background-color: #fff;
-  flex: 1 1 300px; /* Ensures flexibility */
-  max-width: 400px; /* Prevents it from being too wide */
+  flex: 1 1 300px;
+  max-width: 400px;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .analysis-container {
-      flex-direction: column; /* Stack charts vertically */
-      align-items: center; /* Ensures proper centering */
-  }
 
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+  .analysis-container {
+    padding: 0 15px;
+  }
   .chart-container {
-      width: 90%; /* Uses full width on smaller screens */
-      max-width: 350px;
+    flex: 1 1 280px;
+    max-width: 350px;
   }
 }
 
+/* Tablets and larger phones */
+@media (max-width: 768px) {
+  .analysis-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-container {
+    width: 90%;
+    max-width: 360px;
+    padding: 14px;
+  }
+}
+
+/* Small phones (iPhone SE, older Androids) */
 @media (max-width: 480px) {
   .chart-container {
-      width: 95%; /* Ensures it fits well on small screens */
-      padding: 12px;
-      margin: 8px;
+    width: 95%;
+    max-width: 320px;
+    padding: 12px;
+    margin: 8px;
+  }
+}
+
+/* Extra small phones (less than 360px width) */
+@media (max-width: 360px) {
+  .chart-container {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
   }
 }
