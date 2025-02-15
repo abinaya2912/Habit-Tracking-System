@@ -8,7 +8,7 @@ const CompletedHabitSchema = new mongoose.Schema({
   timeOfDay: { type: String, required: true },
   startDate: { type: Date, required: true },
   reminders: { type: String },
-  completedAt: { type: Date, default: Date.now } // Stores the date of completion
+  completedAt: { type: Date, default: Date.now } 
 });
 
 module.exports = mongoose.model("CompletedHabit", CompletedHabitSchema);

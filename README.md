@@ -30,7 +30,7 @@ The development of the Habit Tracking System follows this structured workflow:
 
 ### **1️⃣ Planning & Ideation**
 - Define the problem statement and goals.
-- Identify key features and user requirements.
+- Identify key features and user requirement.
 
 ### **2️⃣ UI/UX Design**
 - Create wireframes and prototypes.
