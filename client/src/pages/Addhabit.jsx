@@ -1,3 +1,4 @@
+// addhabits.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -22,7 +23,11 @@ const AddHabit = () => {
     if (!habit.name.trim()) return;
 
     try {
-      await axios.post("http://localhost:5000/add-habit", habit);
+      // Get the logged-in user's data and add the userId to the habit object.
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const habitWithUser = { ...habit, userId: userData.id };
+
+      await axios.post("http://localhost:5000/add-habit", habitWithUser);
       navigate('/tracking');
     } catch (error) {
       console.error("Error saving habit:", error);

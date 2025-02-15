@@ -1,3 +1,4 @@
+// tracking.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +12,9 @@ const Tracking = () => {
   useEffect(() => {
     const fetchHabits = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/habits");
+        // Get user id from localStorage
+        const userData = JSON.parse(localStorage.getItem("user"));
+        const response = await axios.get(`http://localhost:5000/habits?userId=${userData.id}`);
         setHabits(response.data);
       } catch (error) {
         console.error("Error fetching habits:", error);

@@ -1,3 +1,4 @@
+// Dashboard.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar1 from "../components/Navbar1";
@@ -17,43 +18,39 @@ const Dashboard = () => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
       setUserName(userData.name);
+      // Fetch habits for the logged-in user
+      const fetchHabits = async () => {
+        try {
+          const [completedRes, pendingRes] = await Promise.all([
+            axios.get(`http://localhost:5000/habits/completed?userId=${userData.id}`),
+            axios.get(`http://localhost:5000/habits/pending?userId=${userData.id}`),
+          ]);
+          setCompletedHabits(completedRes.data);
+          setPendingHabits(pendingRes.data);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching habits:", error);
+          setLoading(false);
+        }
+      };
+      fetchHabits();
+    } else {
+      setLoading(false);
     }
-
-    const fetchHabits = async () => {
-      try {
-        const [completedRes, pendingRes] = await Promise.all([
-          axios.get("http://localhost:5000/habits/completed"),
-          axios.get("http://localhost:5000/habits/pending"),
-        ]);
-        setCompletedHabits(completedRes.data);
-        setPendingHabits(pendingRes.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching habits:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchHabits();
   }, []);
 
-  const handleCompleteHabit = async (habitId) => {
+  const handleCompleteHabit = async (habit) => {
     try {
-      // Send request to update habit status
-      await axios.put(`http://localhost:5000/habits/${habitId}/complete`);
+      // Mark the habit as completed by sending it to the /habit/completed endpoint.
+      await axios.post("http://localhost:5000/habit/completed", habit);
       
-      // Find the habit in pendingHabits
-      const habitToComplete = pendingHabits.find(habit => habit._id === habitId);
+      // Update the UI by moving the habit from pending to completed.
+      setCompletedHabits([...completedHabits, habit]);
+      setPendingHabits(pendingHabits.filter(h => h._id !== habit._id));
 
-      if (habitToComplete) {
-        // Move habit from pending to completed in frontend state
-        setCompletedHabits([...completedHabits, habitToComplete]);
-        setPendingHabits(pendingHabits.filter(habit => habit._id !== habitId));
-
-        // Show confetti for celebration
-        setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 2000);
-      }
+      // Show confetti for celebration.
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 2000);
     } catch (error) {
       console.error("Error completing habit:", error);
     }
@@ -114,7 +111,7 @@ const Dashboard = () => {
                   <li 
                     key={habit._id} 
                     className="habit-card pending" 
-                    onClick={() => handleCompleteHabit(habit._id)}
+                    onClick={() => handleCompleteHabit(habit)}
                   >
                     {habit.name} 
                   </li>

@@ -1,14 +1,16 @@
+// server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
+
+dotenv.config();
+
 const signupmodel = require("./signup");
 const Habit = require("./habitModel");
 const CompletedHabit = require("./completedHabitModel");
 const PendingHabit = require("./pendingHabitModel");
-
-dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -22,7 +24,11 @@ mongoose
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((error) => console.error("❌ Database connection error:", error));
 
-/* ✅ Signup Route */
+// -------------------------
+// USER AUTHENTICATION ROUTES
+// -------------------------
+
+// Signup Route
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -39,7 +45,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-/* ✅ Login Route */
+// Login Route
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -52,7 +58,7 @@ app.post("/login", async (req, res) => {
     res.status(200).json({ 
       success: true, 
       message: "Login successful", 
-      user: { id: user._id, name: user.username, email: user.email } // Include the name in response
+      user: { id: user._id, name: user.username, email: user.email }
     });
   } catch (error) {
     console.error("❌ Login error:", error);
@@ -60,10 +66,14 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// -------------------------
+// HABIT ROUTES
+// -------------------------
 
-/* ✅ Add New Habit */
+// Add New Habit
 app.post("/add-habit", async (req, res) => {
   try {
+    // req.body must include userId from the frontend
     const habit = new Habit(req.body);
     await habit.save();
     res.status(201).json({ message: "Habit added successfully", habit });
@@ -73,10 +83,11 @@ app.post("/add-habit", async (req, res) => {
   }
 });
 
-/* ✅ Fetch All Habits */
+// Fetch All Habits (for a specific user)
 app.get("/habits", async (req, res) => {
   try {
-    const habits = await Habit.find();
+    const { userId } = req.query;
+    const habits = await Habit.find({ userId });
     res.status(200).json(habits);
   } catch (error) {
     console.error("❌ Error fetching habits:", error);
@@ -84,10 +95,11 @@ app.get("/habits", async (req, res) => {
   }
 });
 
-/* ✅ Fetch Completed Habits */
+// Fetch Completed Habits (for a specific user)
 app.get("/habits/completed", async (req, res) => {
   try {
-    const completedHabits = await CompletedHabit.find();
+    const { userId } = req.query;
+    const completedHabits = await CompletedHabit.find({ userId });
     res.status(200).json(completedHabits);
   } catch (error) {
     console.error("❌ Error fetching completed habits:", error);
@@ -95,10 +107,11 @@ app.get("/habits/completed", async (req, res) => {
   }
 });
 
-/* ✅ Fetch Pending Habits */
+// Fetch Pending Habits (for a specific user)
 app.get("/habits/pending", async (req, res) => {
   try {
-    const pendingHabits = await PendingHabit.find();
+    const { userId } = req.query;
+    const pendingHabits = await PendingHabit.find({ userId });
     res.status(200).json(pendingHabits);
   } catch (error) {
     console.error("❌ Error fetching pending habits:", error);
@@ -106,9 +119,10 @@ app.get("/habits/pending", async (req, res) => {
   }
 });
 
-/* ✅ Move Habit to Completed */
+// Move Habit to Completed
 app.post("/habit/completed", async (req, res) => {
   try {
+    // Create a new CompletedHabit document from the provided habit data (which should include userId)
     const completedHabit = new CompletedHabit(req.body);
     await completedHabit.save();
     res.status(201).json({ message: "Habit moved to Completed Tasks", completedHabit });
@@ -118,7 +132,7 @@ app.post("/habit/completed", async (req, res) => {
   }
 });
 
-/* ✅ Move Habit to Pending */
+// Move Habit to Pending
 app.post("/habit/pending", async (req, res) => {
   try {
     const pendingHabit = new PendingHabit(req.body);
@@ -130,12 +144,11 @@ app.post("/habit/pending", async (req, res) => {
   }
 });
 
-/* ✅ Update Habit */
+// Update Habit
 app.put("/habit/update/:id", async (req, res) => {
   try {
     const updatedHabit = await Habit.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedHabit) return res.status(404).json({ message: "Habit not found" });
-
     res.status(200).json({ message: "Habit updated successfully", updatedHabit });
   } catch (error) {
     console.error("❌ Error updating habit:", error);
@@ -143,7 +156,7 @@ app.put("/habit/update/:id", async (req, res) => {
   }
 });
 
-/* ✅ Delete Habit */
+// Delete Habit
 app.delete("/habit/:id", async (req, res) => {
   try {
     await Habit.findByIdAndDelete(req.params.id);
@@ -154,7 +167,7 @@ app.delete("/habit/:id", async (req, res) => {
   }
 });
 
-/* ✅ Delete Completed Habit */
+// Delete Completed Habit
 app.delete("/habit/completed/:id", async (req, res) => {
   try {
     await CompletedHabit.findByIdAndDelete(req.params.id);
@@ -165,7 +178,7 @@ app.delete("/habit/completed/:id", async (req, res) => {
   }
 });
 
-/* ✅ Delete Pending Habit */
+// Delete Pending Habit
 app.delete("/habit/pending/:id", async (req, res) => {
   try {
     await PendingHabit.findByIdAndDelete(req.params.id);
@@ -176,13 +189,18 @@ app.delete("/habit/pending/:id", async (req, res) => {
   }
 });
 
-/* ✅ Reset Habits (Move All to Pending) */
+// Reset Habits (Move all Completed to Pending for a specific user)
 app.post("/habit/reset", async (req, res) => {
   try {
-    const completedHabits = await CompletedHabit.find();
-    const movedHabits = completedHabits.map(habit => new PendingHabit(habit.toObject()));
+    const { userId } = req.body;
+    const completedHabits = await CompletedHabit.find({ userId });
+    const movedHabits = completedHabits.map(habit => {
+      const habitObj = habit.toObject();
+      delete habitObj._id;
+      return new PendingHabit(habitObj);
+    });
     await PendingHabit.insertMany(movedHabits);
-    await CompletedHabit.deleteMany({});
+    await CompletedHabit.deleteMany({ userId });
     res.status(200).json({ message: "All completed habits moved to pending" });
   } catch (error) {
     console.error("❌ Error resetting habits:", error);
