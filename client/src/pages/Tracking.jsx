@@ -14,7 +14,7 @@ const Tracking = () => {
     const fetchHabits = async () => {
       try {
         const userData = JSON.parse(localStorage.getItem("user"));
-        const response = await axios.get(`http://localhost:5000/habits?userId=${userData.id}`);
+        const response = await axios.get(`https://habit-tracking-system-backend.onrender.com/habits?userId=${userData.id}`);
         setHabits(response.data);
       } catch (error) {
         console.error("Error fetching habits:", error);
@@ -34,14 +34,14 @@ const Tracking = () => {
 
     try {
       if (isCompleted) {
-        await axios.post(`http://localhost:5000/habit/completed`, selectedHabit);
+        await axios.post(`https://habit-tracking-system-backend.onrender.com/habit/completed`, selectedHabit);
         alert("Habit marked as Completed!");
       } else {
-        await axios.post(`http://localhost:5000/habit/pending`, selectedHabit);
+        await axios.post(`https://habit-tracking-system-backend.onrender.com/habit/pending`, selectedHabit);
         alert("Habit marked as Not Completed!");
       }
 
-      await axios.delete(`http://localhost:5000/habit/${selectedHabit._id}`);
+      await axios.delete(`https://habit-tracking-system-backend.onrender.com/habit/${selectedHabit._id}`);
       setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== selectedHabit._id));
     } catch (error) {
       console.error("Error handling habit:", error);
