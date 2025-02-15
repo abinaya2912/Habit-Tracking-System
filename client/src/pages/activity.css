@@ -14,7 +14,7 @@
 /* Navigation Bar */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keeps logo on left and nav-links on right */
   align-items: center;
   background: #007bff;
   padding: 10px 20px;
@@ -25,9 +25,10 @@
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin: 0;
   padding: 0;
+  margin-right: 70px; /* Adjust this value to move the nav topics left */
 }
 
 .nav-links li {
@@ -48,6 +49,7 @@
   color: black;
   border-radius: 5px;
 }
+
 
 /* Introduction Box */
 .intro-container {

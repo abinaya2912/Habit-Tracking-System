@@ -6,6 +6,7 @@ import Tracking from "./pages/Tracking";
 import Dashboard from "./pages/Dashboard";
 import Analysis from "./pages/Analysis";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Signup from "./pages/Signup";
 import Addhabit from "./pages/Addhabit"; // Removed unnecessary `Firebase` import
 import "./App.css";
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/addhabits" element={<Addhabit />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </Router>
   );
