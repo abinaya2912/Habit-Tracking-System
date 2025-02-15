@@ -20,10 +20,10 @@ const Analysis = () => {
 
         // Fetch completed and pending habits for the specific user
         const completedRes = await axios.get(
-          `http://localhost:5000/habits/completed?userId=${userId}`
+          `https://habit-tracking-system-backend.onrender.com/habits/completed?userId=${userId}`
         );
         const pendingRes = await axios.get(
-          `http://localhost:5000/habits/pending?userId=${userId}`
+          `https://habit-tracking-system-backend.onrender.com/habits/pending?userId=${userId}`
         );
 
         // Calculate the distribution for each status
