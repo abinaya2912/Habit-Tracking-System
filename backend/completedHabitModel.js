@@ -12,3 +12,4 @@ const CompletedHabitSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("CompletedHabit", CompletedHabitSchema);
+

@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const mongourl = process.env.MONGO_URI || "mongodb://localhost:27017/habitTracker";
+const mongourl = "mongodb+srv://abinayab22cse:PtFKRVb30BP5ZgcK@cluster0.id6aa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const port = process.env.PORT || 5000;
 
 mongoose
