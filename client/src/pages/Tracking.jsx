@@ -14,7 +14,7 @@ const Tracking = () => {
       try {
         // Get user id from localStorage
         const userData = JSON.parse(localStorage.getItem("user"));
-        const response = await axios.get(`http://localhost:5000/habits?userId=${userData.id}`);
+        const response = await axios.get(`https://habit-tracking-system-proj.onrender.com/habits?userId=${userData.id}`);
         setHabits(response.data);
       } catch (error) {
         console.error("Error fetching habits:", error);
@@ -29,14 +29,14 @@ const Tracking = () => {
     
     if (userChoice) {
       try {
-        await axios.post(`http://localhost:5000/habit/completed`, habit);
+        await axios.post(`https://habit-tracking-system-proj.onrender.com/habit/completed`, habit);
         alert("Habit moved to Completed Tasks!");
       } catch (error) {
         console.error("Error marking habit as completed:", error);
       }
     } else {
       try {
-        await axios.post(`http://localhost:5000/habit/pending`, habit);
+        await axios.post(`https://habit-tracking-system-proj.onrender.com/habit/pending`, habit);
         alert("Habit moved to Pending Tasks!");
       } catch (error) {
         console.error("Error marking habit as pending:", error);
@@ -44,7 +44,7 @@ const Tracking = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/habit/${id}`);
+      await axios.delete(`https://habit-tracking-system-proj.onrender.com/habit/${id}`);
       setHabits((prevHabits) => prevHabits.filter((habit) => habit._id !== id));
     } catch (error) {
       console.error("Error deleting habit:", error);

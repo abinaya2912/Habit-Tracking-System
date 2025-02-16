@@ -13,7 +13,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/signup", { username, email, password });
+      const response = await axios.post("https://habit-tracking-system-proj.onrender.com/signup", { username, email, password });
       toast.success(response.data.message);
       navigate("/login");
     } catch (error) {

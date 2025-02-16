@@ -27,7 +27,7 @@ const AddHabit = () => {
       const userData = JSON.parse(localStorage.getItem("user"));
       const habitWithUser = { ...habit, userId: userData.id };
 
-      await axios.post("http://localhost:5000/add-habit", habitWithUser);
+      await axios.post("https://habit-tracking-system-proj.onrender.com/add-habit", habitWithUser);
       navigate('/tracking');
     } catch (error) {
       console.error("Error saving habit:", error);
